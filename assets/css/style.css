@@ -1,0 +1,417 @@
+/* Custom Styles for Dr. Satish Kaushik Website */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Root Variables for Theme */
+:root {
+  --primary-color: #008080; /* Teal */
+  --secondary-color: #20b2aa; /* Light Sea Green */
+  --accent-color: #2e8b57; /* Sea Green */
+  --light-bg: #f8f9fa;
+  --dark-bg: #121212;
+  --dark-text: #ffffff;
+  --light-text: #333333;
+  --transition: all 0.3s ease;
+}
+
+/* Dark Mode Variables */
+[data-theme="dark"] {
+  --bg-color: var(--dark-bg);
+  --text-color: var(--dark-text);
+  --card-bg: #1e1e1e;
+  --navbar-bg: #1a1a1a;
+}
+
+/* Light Mode Variables */
+[data-theme="light"] {
+  --bg-color: #ffffff;
+  --text-color: var(--light-text);
+  --card-bg: #ffffff;
+  --navbar-bg: #ffffff;
+}
+
+/* Global Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: var(--transition);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  color: var(--primary-color);
+  word-break: break-word;
+}
+
+p {
+  margin-bottom: 1rem;
+  word-break: break-word;
+}
+
+/* Navbar */
+.navbar {
+  background-color: var(--navbar-bg) !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: var(--transition);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  color: var(--primary-color) !important;
+}
+
+.navbar-nav .nav-link {
+  color: var(--text-color) !important;
+  transition: var(--transition);
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--secondary-color) !important;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.btn-primary {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  transition: var(--transition);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* Cards */
+.card {
+  background-color: var(--card-bg);
+  border: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Forms */
+.form-control {
+  border-radius: 0.5rem;
+  border: 1px solid #ddd;
+  transition: var(--transition);
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(0, 128, 128, 0.25);
+}
+
+/* Buttons */
+.btn {
+  border-radius: 0.5rem;
+  transition: var(--transition);
+  min-height: 44px; /* Touch-friendly size for mobile */
+  min-width: 44px;
+  padding: 0.75rem 1.5rem;
+}
+
+/* Testimonials Carousel */
+.carousel-item {
+  padding: 40px;
+  text-align: center;
+}
+
+/* Book Grid */
+.book-grid .card {
+  margin-bottom: 2rem;
+}
+
+/* Article Cards */
+.article-card {
+  margin-bottom: 2rem;
+}
+
+/* Doctor Image Responsive */
+.col-lg-6 img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Footer */
+footer {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+
+/* Dark Mode Toggle */
+#darkModeToggle {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+#darkModeToggle:hover {
+  color: var(--primary-color);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .hero {
+    padding: 40px 0;
+  }
+
+  .navbar-nav {
+    text-align: center;
+  }
+
+  /* Mobile button stacking */
+  .btn-lg {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .mt-4 .btn {
+    display: block;
+    width: 100%;
+    margin: 0.5rem 0 !important;
+  }
+
+  /* Card adjustments for mobile */
+  .card-img-top {
+    height: 150px;
+  }
+
+  .card {
+    margin-bottom: 1.5rem;
+  }
+
+  /* Form spacing */
+  .form-control {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  /* Carousel mobile */
+  .carousel-item {
+    padding: 20px;
+  }
+
+  /* Section padding */
+  section {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  /* Hero button improvements */
+  .btn-outline-light {
+    border: 2px solid white;
+  }
+
+  /* Footer padding */
+  footer {
+    padding: 15px 0;
+    font-size: 0.9rem;
+  }
+
+  /* Toast adjustments */
+  .toast {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    width: auto;
+    font-size: 0.9rem;
+  }
+
+  /* Doctor image tablet sizing */
+  .col-lg-6 img {
+    max-width: 80%;
+    margin-top: 1.5rem;
+  }
+}
+
+/* Extra small devices (xs) */
+@media (max-width: 576px) {
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero {
+    padding: 30px 0;
+  }
+
+  h1, h2 {
+    font-size: 1.5rem;
+  }
+
+  h3, h4 {
+    font-size: 1.1rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  /* Column adjustments */
+  .col-lg-6, .col-md-4 {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  /* Card text size */
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .card-text {
+    font-size: 0.85rem;
+  }
+
+  /* Button sizing */
+  .btn {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .btn-lg {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+  }
+
+  /* Image responsive */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Navbar brand size */
+  .navbar-brand {
+    font-size: 1rem;
+  }
+
+  /* Dark mode toggle */
+  #darkModeToggle {
+    font-size: 1.2rem;
+  }
+
+  /* Section margins */
+  .py-5 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  .mb-5 {
+    margin-bottom: 1rem !important;
+  }
+
+  /* Grid spacing */
+  .row {
+    margin-left: -5px;
+    margin-right: -5px;
+    margin-top: 3rem;
+  }
+
+  /* Doctor image mobile sizing */
+  .col-lg-6 img {
+    max-width: 90%;
+    margin-top: 1.5rem;
+  }
+}
+
+/* Landscape orientation fixes */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    padding: 20px 0;
+  }
+
+  .hero h1 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .mt-4 .btn {
+    margin: 0.25rem 0.5rem !important;
+  }
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in;
+}
+
+/* Toast Notifications */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.toast.success {
+  border-left: 4px solid #28a745;
+}
+
+.toast.error {
+  border-left: 4px solid #dc3545;
+}

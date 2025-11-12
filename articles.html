@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Articles by Dr. Satish Kaushik - Homeopathy Insights</title>
+  <meta name="description" content="Read informative articles on homeopathy by Dr. Satish Kaushik. Learn about holistic medicine, treatments, and health tips.">
+  <meta name="keywords" content="homeopathy articles, Dr. Satish Kaushik articles, homeopathy blog, holistic medicine, health tips">
+  <meta name="author" content="Dr. Satish Kaushik">
+  <meta name="robots" content="index, follow">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom JS (inlined) -->
+  <script>
+// JavaScript for Dr. Satish Kaushik Website
+
+// Dark Mode Toggle
+const darkModeToggle = document.getElementById('darkModeToggle');
+if (darkModeToggle) {
+  darkModeToggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateDarkModeIcon(newTheme);
+  });
+
+  // Load saved theme
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  updateDarkModeIcon(savedTheme);
+}
+
+function updateDarkModeIcon(theme) {
+  const icon = darkModeToggle.querySelector('i');
+  if (theme === 'dark') {
+    icon.className = 'fas fa-sun';
+  } else {
+    icon.className = 'fas fa-moon';
+  }
+}
+
+// Smooth Scroll for Navigation
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+// Form Validation
+function validateForm(form) {
+  const inputs = form.querySelectorAll('input[required], textarea[required]');
+  let isValid = true;
+
+  inputs.forEach(input => {
+    if (!input.value.trim()) {
+      input.classList.add('is-invalid');
+      isValid = false;
+    } else {
+      input.classList.remove('is-invalid');
+      input.classList.add('is-valid');
+    }
+  });
+
+  // Email validation
+  const emailInput = form.querySelector('input[type="email"]');
+  if (emailInput && emailInput.value) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailInput.value)) {
+      emailInput.classList.add('is-invalid');
+      isValid = false;
+    }
+  }
+
+  // Phone validation
+  const phoneInput = form.querySelector('input[type="tel"]');
+  if (phoneInput && phoneInput.value) {
+    const phoneRegex = /^\+?[\d\s\-\(\)]+$/;
+    if (!phoneRegex.test(phoneInput.value)) {
+      phoneInput.classList.add('is-invalid');
+      isValid = false;
+    }
+  }
+
+  return isValid;
+}
+
+// Toast Notifications
+function showToast(message, type = 'success') {
+  const toast = document.createElement('div');
+  toast.className = `toast ${type} fade-in`;
+  toast.innerHTML = `
+    <div class="toast-body">
+      ${message}
+    </div>
+  `;
+  document.body.appendChild(toast);
+
+  setTimeout(() => {
+    toast.remove();
+  }, 5000);
+}
+
+// Appointment Form Submission
+const appointmentForm = document.getElementById('appointmentForm');
+if (appointmentForm) {
+  appointmentForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (validateForm(this)) {
+      // Save to local storage
+      const formData = new FormData(this);
+      const appointmentData = {};
+      for (let [key, value] of formData.entries()) {
+        appointmentData[key] = value;
+      }
+      localStorage.setItem('lastAppointment', JSON.stringify(appointmentData));
+
+      // Show confirmation modal
+      const modal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+      modal.show();
+
+      // Reset form
+      this.reset();
+      this.querySelectorAll('.is-valid').forEach(el => el.classList.remove('is-valid'));
+    } else {
+      showToast('Please fill in all required fields correctly.', 'error');
+    }
+  });
+}
+
+// Contact Form Submission
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (validateForm(this)) {
+      showToast('Thank you for your message! We will get back to you soon.');
+      this.reset();
+      this.querySelectorAll('.is-valid').forEach(el => el.classList.remove('is-valid'));
+    } else {
+      showToast('Please fill in all required fields correctly.', 'error');
+    }
+  });
+}
+
+// Books Data (Dummy)
+const books = [
+  {
+    id: 1,
+    title: 'Homeopathy for Beginners',
+    cover: 'https://via.placeholder.com/300x400/008080/ffffff?text=Book+1',
+    description: 'An introductory guide to homeopathy principles and practices.',
+    content: '<h1>Homeopathy for Beginners</h1><p>This is the content of the book...</p><p>Page 1 content here.</p><p>Page 2 content here.</p>',
+    pdf: 'assets/pdf/chronic diseases.pdf'
+  },
+  {
+    id: 2,
+    title: 'Advanced Homeopathic Remedies',
+    cover: 'https://via.placeholder.com/300x400/20b2aa/ffffff?text=Book+2',
+    description: 'Detailed exploration of advanced homeopathic treatments.',
+    content: '<h1>Advanced Homeopathic Remedies</h1><p>This is the content of the book...</p><p>Advanced remedies explained.</p>',
+    pdf: 'https://example.com/advanced-homeopathic-remedies.pdf'
+  },
+  {
+    id: 3,
+    title: 'Case Studies in Homeopathy',
+    cover: 'https://via.placeholder.com/300x400/2e8b57/ffffff?text=Book+3',
+    description: 'Real-life case studies showcasing homeopathic success stories.',
+    content: '<h1>Case Studies in Homeopathy</h1><p>This is the content of the book...</p><p>Case study 1...</p><p>Case study 2...</p>',
+    pdf: 'https://example.com/case-studies-in-homeopathy.pdf'
+  }
+];
+
+// Render Books
+function renderBooks(booksToRender = books) {
+  const bookGrid = document.getElementById('bookGrid');
+  if (bookGrid) {
+    bookGrid.innerHTML = '';
+    booksToRender.forEach(book => {
+      const bookCard = `
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <img src="${book.cover}" class="card-img-top" alt="${book.title}">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">${book.title}</h5>
+              <p class="card-text">${book.description}</p>
+              <!-- If a PDF is available, open it in a new tab. Otherwise, open internal viewer. -->
+              <button class="btn btn-primary mt-auto" onclick="viewBookPdf(${book.id})">Read Book</button>
+            </div>
+          </div>
+        </div>
+      `;
+      bookGrid.innerHTML += bookCard;
+    });
+  }
+}
+
+// Render Articles
+function renderArticles(articlesToRender = articles) {
+  const articleGrid = document.getElementById('articleGrid');
+  if (articleGrid) {
+    articleGrid.innerHTML = '';
+    articlesToRender.forEach(article => {
+      const articleCard = `
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 article-card">
+            <img src="${article.image}" class="card-img-top" alt="${article.title}">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">${article.title}</h5>
+              <p class="card-text">${article.shortDescription}</p>
+              <button class="btn btn-primary mt-auto" onclick="viewArticle(${article.id})">Read More</button>
+            </div>
+          </div>
+        </div>
+      `;
+      articleGrid.innerHTML += articleCard;
+    });
+  }
+}
+
+// View Book
+function viewBook(bookId) {
+  const book = books.find(b => b.id === bookId);
+  if (book) {
+    localStorage.setItem('lastReadBook', JSON.stringify(book));
+    window.location.href = `book-viewer.html?id=${bookId}`;
+  }
+}
+
+// View Article
+function viewArticle(articleId) {
+  const article = articles.find(a => a.id === articleId);
+  if (article) {
+    localStorage.setItem('currentArticle', JSON.stringify(article));
+    window.location.href = `articles.html?id=${articleId}`;
+  }
+}
+
+function viewBookPdf(bookId) {
+    const book = books.find(b => b.id === bookId);
+    if (!book) return;
+    if (book.pdf) {
+      // Encode URL to handle spaces and special characters
+      const url = encodeURI(book.pdf);
+      window.open(url, '_blank');
+    } else {
+      // Fallback to the internal viewer if no PDF available
+      viewBook(bookId);
+    }
+}
+
+// Load Book Viewer
+function loadBookViewer() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const bookId = parseInt(urlParams.get('id'));
+  const book = books.find(b => b.id === bookId);
+
+  if (book) {
+    document.title = book.title;
+    document.getElementById('bookTitle').textContent = book.title;
+
+    if (book.pdf) {
+      document.getElementById('bookContent').style.display = 'none';
+      document.getElementById('pdfViewer').style.display = 'block';
+      loadPDF(book.pdf);
+    } else {
+      document.getElementById('bookContent').innerHTML = book.content;
+    }
+  }
+}
+
+// PDF.js initialization
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+// Function to load PDF
+function loadPDF(url) {
+  pdfjsLib.getDocument(url).promise.then(function(pdf) {
+    const canvas = document.getElementById('pdfCanvas');
+    const context = canvas.getContext('2d');
+    let pageNumber = 1;
+    let pdfDoc = pdf;
+
+    function renderPage(num) {
+      pdfDoc.getPage(num).then(function(page) {
+        const scale = 1.5;
+        const viewport = page.getViewport({ scale: scale });
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        const renderContext = {
+          canvasContext: context,
+          viewport: viewport
+        };
+        page.render(renderContext);
+
+        document.getElementById('pageInfo').textContent = `Page ${num} of ${pdfDoc.numPages}`;
+      });
+    }
+
+    renderPage(pageNumber);
+
+    document.getElementById('prevPage').addEventListener('click', function() {
+      if (pageNumber <= 1) return;
+      pageNumber--;
+      renderPage(pageNumber);
+    });
+
+    document.getElementById('nextPage').addEventListener('click', function() {
+      if (pageNumber >= pdfDoc.numPages) return;
+      pageNumber++;
+      renderPage(pageNumber);
+    });
+  });
+}
+
+// Load Article Viewer
+function loadArticleViewer() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const articleId = parseInt(urlParams.get('id'));
+  const article = articles.find(a => a.id === articleId);
+  const articleGrid = document.getElementById('articleGrid');
+  const articleContentWrapper = document.getElementById('articleContent');
+  const articleTitleEl = document.getElementById('articleTitle');
+  const fullArticleContent = document.getElementById('fullArticleContent');
+
+  if (article) {
+    // Hide grid and show viewer
+    if (articleGrid) articleGrid.style.display = 'none';
+    if (articleContentWrapper) articleContentWrapper.style.display = 'block';
+    if (articleTitleEl) articleTitleEl.textContent = article.title;
+    if (fullArticleContent) fullArticleContent.innerHTML = article.fullContent;
+    document.title = article.title;
+  } else {
+    // Show all articles if no specific article selected
+    if (articleGrid) articleGrid.style.display = 'flex';
+    if (articleContentWrapper) articleContentWrapper.style.display = 'none';
+    renderArticles();
+  }
+}
+
+// Search and Filter Books
+function searchBooks() {
+  const searchTerm = document.getElementById('bookSearch').value.toLowerCase();
+  const filteredBooks = books.filter(book =>
+    book.title.toLowerCase().includes(searchTerm) ||
+    book.description.toLowerCase().includes(searchTerm)
+  );
+  renderBooks(filteredBooks);
+}
+
+// Search and Filter Articles
+function searchArticles() {
+  const searchTerm = document.getElementById('articleSearch').value.toLowerCase();
+  const filteredArticles = articles.filter(article =>
+    article.title.toLowerCase().includes(searchTerm) ||
+    article.shortDescription.toLowerCase().includes(searchTerm)
+  );
+  renderArticles(filteredArticles);
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize tooltips and popovers if needed
+  const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+  });
+
+  // Load specific content based on page
+  if (document.getElementById('bookGrid')) {
+    renderBooks();
+  }
+  if (document.getElementById('articleGrid')) {
+    renderArticles();
+  }
+  if (document.getElementById('bookContent')) {
+    loadBookViewer();
+  }
+  if (document.getElementById('articleContent')) {
+    loadArticleViewer();
+  }
+
+  // Add search event listeners
+  const bookSearch = document.getElementById('bookSearch');
+  if (bookSearch) {
+    bookSearch.addEventListener('input', searchBooks);
+  }
+  const articleSearch = document.getElementById('articleSearch');
+  if (articleSearch) {
+    articleSearch.addEventListener('input', searchArticles);
+  }
+});
+
+  </script>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Dr. Satish Kaushik</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="books.html">Books</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="articles.html">Articles</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="appointment.html">Appointment</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item">
+            <button id="darkModeToggle" class="btn"><i class="fas fa-moon"></i></button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Articles Section -->
+  <section class="py-5 mt-5">
+    <div class="container">
+      <h1 class="text-center mb-5">Homeopathy Articles</h1>
+      <p class="text-center mb-4">Explore my latest articles on homeopathy, holistic health, and natural remedies.</p>
+
+      <!-- Search Bar -->
+      <div class="row justify-content-center mb-4">
+        <div class="col-md-6">
+          <input type="text" id="articleSearch" class="form-control" placeholder="Search articles...">
+        </div>
+      </div>
+
+      <!-- Articles Grid -->
+      <div id="articleGrid" class="row">
+        <!-- Static fallback articles (also used as demo content). These have data-static so the JS renderer won't duplicate them. -->
+        <div class="col-md-4 mb-4" data-static="true">
+          <div class="card h-100 article-card">
+            <img src="https://via.placeholder.com/400x250/008080/ffffff?text=Article+1" class="card-img-top" alt="The Benefits of Homeopathy">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">The Benefits of Homeopathy</h5>
+              <p class="card-text">Exploring the holistic approach of homeopathic medicine.</p>
+              <button class="btn btn-primary mt-auto" onclick="viewArticle(1)">Read More</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4" data-static="true">
+          <div class="card h-100 article-card">
+            <img src="https://via.placeholder.com/400x250/20b2aa/ffffff?text=Article+2" class="card-img-top" alt="Understanding Homeopathic Dilutions">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Understanding Homeopathic Dilutions</h5>
+              <p class="card-text">A deep dive into the science behind homeopathic dilutions.</p>
+              <button class="btn btn-primary mt-auto" onclick="viewArticle(2)">Read More</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4" data-static="true">
+          <div class="card h-100 article-card">
+            <img src="https://via.placeholder.com/400x250/2e8b57/ffffff?text=Article+3" class="card-img-top" alt="Homeopathy vs. Conventional Medicine">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Homeopathy vs. Conventional Medicine</h5>
+              <p class="card-text">Comparing homeopathy with traditional medical practices.</p>
+              <button class="btn btn-primary mt-auto" onclick="viewArticle(3)">Read More</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4" data-static="true">
+          <div class="card h-100 article-card">
+            <img src="https://via.placeholder.com/800x450/6aa84f/ffffff?text=Demo+Article" class="card-img-top" alt="Demo Article: A Gentle Introduction">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Demo Article: A Gentle Introduction</h5>
+              <p class="card-text">A short demo article added to show how articles appear and open in the viewer.</p>
+              <button class="btn btn-primary mt-auto" onclick="viewArticle(4)">Read More</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4" data-static="true">
+          <div class="card h-100 article-card">
+            <img src="https://via.placeholder.com/800x450/ffb84d/ffffff?text=Kids+Health" class="card-img-top" alt="Homeopathy for Kids: Gentle Care">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Homeopathy for Kids: Gentle Care</h5>
+              <p class="card-text">Practical tips and remedies for common childhood complaints using gentle homeopathic approaches.</p>
+              <button class="btn btn-primary mt-auto" onclick="viewArticle(5)">Read More</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4" data-static="true">
+          <div class="card h-100 article-card">
+            <img src="https://via.placeholder.com/800x450/6fa8dc/ffffff?text=Allergies" class="card-img-top" alt="Managing Allergies Naturally">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Managing Allergies Naturally</h5>
+              <p class="card-text">Strategies and homeopathic options to reduce allergy symptoms and build resilience.</p>
+              <button class="btn btn-primary mt-auto" onclick="viewArticle(6)">Read More</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4" data-static="true">
+          <div class="card h-100 article-card">
+            <img src="https://via.placeholder.com/800x450/93c47d/ffffff?text=Constitution" class="card-img-top" alt="Understanding Constitutional Types">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Understanding Constitutional Types</h5>
+              <p class="card-text">An introduction to constitutional prescribing and why it matters in homeopathy.</p>
+              <button class="btn btn-primary mt-auto" onclick="viewArticle(7)">Read More</button>
+            </div>
+          </div>
+        </div>
+        <!-- End static articles -->
+      </div>
+
+      <!-- Full Article Content (shown when specific article is selected) -->
+      <div id="articleContent" class="mt-5" style="display: none;">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2 id="articleTitle"></h2>
+          <button class="btn btn-secondary" onclick="showArticleList()">Back to Articles</button>
+        </div>
+        <div id="fullArticleContent">
+          <!-- Full article content will be loaded here -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 Dr. Satish Kaushik. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="assets/js/app.js"></script>
+  <script>
+    function showArticleList() {
+      document.getElementById('articleGrid').style.display = 'flex';
+      document.getElementById('articleContent').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

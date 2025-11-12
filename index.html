@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Satish Kaushik - Homeopathy Specialist</title>
+  <meta name="description" content="Dr. Satish Kaushik, a renowned homeopathy doctor specializing in holistic treatments. Book appointments, read articles, and explore books on homeopathy.">
+  <meta name="keywords" content="homeopathy, Dr. Satish Kaushik, homeopathy doctor, holistic medicine, book appointment, homeopathy books, homeopathy articles">
+  <meta name="author" content="Dr. Satish Kaushik">
+  <meta name="robots" content="index, follow">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Dr. Satish Kaushik</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="books.html">Books</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="articles.html">Articles</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="appointment.html">Appointment</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item">
+            <button id="darkModeToggle" class="btn"><i class="fas fa-moon"></i></button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <h1 style="color: white;">Welcome to Dr. Satish Kaushik's Practice</h1>
+          <p class="lead">Specializing in Homeopathy for Holistic Healing</p>
+          <div class="mt-4">
+            <a href="appointment.html" class="btn btn-primary btn-lg me-3">Book Appointment</a>
+            <a href="books.html" class="btn btn-outline-light btn-lg me-3">View Books</a>
+            <a href="articles.html" class="btn btn-outline-light btn-lg">Read Articles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Introduction Section -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <h2>About Dr. Satish Kaushik</h2>
+          <p>Dr. Satish Kaushik is a highly experienced homeopathy practitioner dedicated to providing personalized, holistic treatments. With years of expertise in homeopathic medicine, he has helped numerous patients achieve optimal health through natural remedies.</p>
+          <p>His approach combines traditional homeopathic principles with modern understanding to address a wide range of health concerns, from chronic conditions to preventive care.</p>
+          <a href="about.html" class="btn btn-primary my-2 d-flex align-items-center" style="width:10rem">Learn More</a>
+        </div>
+        <div class="col-lg-6">
+          <img src="./assets/images/dockerimg.jpg" alt="Dr. Satish Kaushik" class="img-fluid rounded">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-5">Our Services</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-user-md fa-3x text-primary mb-3"></i>
+              <h5 class="card-title">Personalized Consultations</h5>
+              <p class="card-text">Individualized homeopathic treatments tailored to your unique health needs.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-book fa-3x text-primary mb-3"></i>
+              <h5 class="card-title">Educational Resources</h5>
+              <p class="card-text">Access to books and articles on homeopathy for better understanding.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-calendar-check fa-3x text-primary mb-3"></i>
+              <h5 class="card-title">Online Appointments</h5>
+              <p class="card-text">Convenient online booking for consultations from anywhere.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 Dr. Satish Kaushik. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script>
+// JavaScript for Dr. Satish Kaushik Website
+
+// Dark Mode Toggle
+const darkModeToggle = document.getElementById('darkModeToggle');
+if (darkModeToggle) {
+  darkModeToggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateDarkModeIcon(newTheme);
+  });
+
+  // Load saved theme
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  updateDarkModeIcon(savedTheme);
+}
+
+function updateDarkModeIcon(theme) {
+  const icon = darkModeToggle.querySelector('i');
+  if (theme === 'dark') {
+    icon.className = 'fas fa-sun';
+  } else {
+    icon.className = 'fas fa-moon';
+  }
+}
+
+// Smooth Scroll for Navigation
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+// Form Validation
+function validateForm(form) {
+  const inputs = form.querySelectorAll('input[required], textarea[required]');
+  let isValid = true;
+
+  inputs.forEach(input => {
+    if (!input.value.trim()) {
+      input.classList.add('is-invalid');
+      isValid = false;
+    } else {
+      input.classList.remove('is-invalid');
+      input.classList.add('is-valid');
+    }
+  });
+
+  // Email validation
+  const emailInput = form.querySelector('input[type="email"]');
+  if (emailInput && emailInput.value) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailInput.value)) {
+      emailInput.classList.add('is-invalid');
+      isValid = false;
+    }
+  }
+
+  // Phone validation
+  const phoneInput = form.querySelector('input[type="tel"]');
+  if (phoneInput && phoneInput.value) {
+    const phoneRegex = /^\+?[\d\s\-\(\)]+$/;
+    if (!phoneRegex.test(phoneInput.value)) {
+      phoneInput.classList.add('is-invalid');
+      isValid = false;
+    }
+  }
+
+  return isValid;
+}
+
+// Toast Notifications
+function showToast(message, type = 'success') {
+  const toast = document.createElement('div');
+  toast.className = `toast ${type} fade-in`;
+  toast.innerHTML = `
+    <div class="toast-body">
+      ${message}
+    </div>
+  `;
+  document.body.appendChild(toast);
+
+  setTimeout(() => {
+    toast.remove();
+  }, 5000);
+}
+
+// Appointment Form Submission
+const appointmentForm = document.getElementById('appointmentForm');
+if (appointmentForm) {
+  appointmentForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (validateForm(this)) {
+      // Save to local storage
+      const formData = new FormData(this);
+      const appointmentData = {};
+      for (let [key, value] of formData.entries()) {
+        appointmentData[key] = value;
+      }
+      localStorage.setItem('lastAppointment', JSON.stringify(appointmentData));
+
+      // Show confirmation modal
+      const modal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+      modal.show();
+
+      // Reset form
+      this.reset();
+      this.querySelectorAll('.is-valid').forEach(el => el.classList.remove('is-valid'));
+    } else {
+      showToast('Please fill in all required fields correctly.', 'error');
+    }
+  });
+}
+
+// Contact Form Submission
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (validateForm(this)) {
+      showToast('Thank you for your message! We will get back to you soon.');
+      this.reset();
+      this.querySelectorAll('.is-valid').forEach(el => el.classList.remove('is-valid'));
+    } else {
+      showToast('Please fill in all required fields correctly.', 'error');
+    }
+  });
+}
+
+// Books Data (Dummy)
+const books = [
+  {
+    id: 1,
+    title: 'Homeopathy for Beginners',
+    cover: 'https://via.placeholder.com/300x400/008080/ffffff?text=Book+1',
+    description: 'An introductory guide to homeopathy principles and practices.',
+    content: '<h1>Homeopathy for Beginners</h1><p>This is the content of the book...</p><p>Page 1 content here.</p><p>Page 2 content here.</p>',
+    pdf: 'assets/pdf/chronic diseases.pdf'
+  },
+  {
+    id: 2,
+    title: 'Advanced Homeopathic Remedies',
+    cover: 'https://via.placeholder.com/300x400/20b2aa/ffffff?text=Book+2',
+    description: 'Detailed exploration of advanced homeopathic treatments.',
+    content: '<h1>Advanced Homeopathic Remedies</h1><p>This is the content of the book...</p><p>Advanced remedies explained.</p>',
+    pdf: 'https://example.com/advanced-homeopathic-remedies.pdf'
+  },
+  {
+    id: 3,
+    title: 'Case Studies in Homeopathy',
+    cover: 'https://via.placeholder.com/300x400/2e8b57/ffffff?text=Book+3',
+    description: 'Real-life case studies showcasing homeopathic success stories.',
+    content: '<h1>Case Studies in Homeopathy</h1><p>This is the content of the book...</p><p>Case study 1...</p><p>Case study 2...</p>',
+    pdf: 'https://example.com/case-studies-in-homeopathy.pdf'
+  }
+];
+
+// Articles Data (Dummy)
+const articles = [
+  {
+    id: 1,
+    title: 'The Benefits of Homeopathy',
+    image: 'https://via.placeholder.com/400x250/008080/ffffff?text=Article+1',
+    shortDescription: 'Exploring the holistic approach of homeopathic medicine.',
+    fullContent: '<h1>The Benefits of Homeopathy</h1><p>Full article content here...</p><p>Detailed explanation of benefits.</p>'
+  },
+  {
+    id: 2,
+    title: 'Understanding Homeopathic Dilutions',
+    image: 'https://via.placeholder.com/400x250/20b2aa/ffffff?text=Article+2',
+    shortDescription: 'A deep dive into the science behind homeopathic dilutions.',
+    fullContent: '<h1>Understanding Homeopathic Dilutions</h1><p>Full article content here...</p><p>Scientific insights.</p>'
+  },
+  {
+    id: 3,
+    title: 'Homeopathy vs. Conventional Medicine',
+    image: 'https://via.placeholder.com/400x250/2e8b57/ffffff?text=Article+3',
+    shortDescription: 'Comparing homeopathy with traditional medical practices.',
+    fullContent: '<h1>Homeopathy vs. Conventional Medicine</h1><p>Full article content here...</p><p>Comparative analysis.</p>'
+  },
+  {
+    id: 4,
+    title: 'Demo Article: A Gentle Introduction',
+    image: 'https://via.placeholder.com/800x450/6aa84f/ffffff?text=Demo+Article',
+    shortDescription: 'A short demo article added to show how articles appear and open in the viewer.',
+    fullContent: `
+      <article>
+        <h1>Demo Article: A Gentle Introduction</h1>
+        <p><em>By Dr. Satish Kaushik</em></p>
+        <p>This is a demo article created to demonstrate how articles are rendered on the Articles page and how the in-page viewer works. You can search, click the card, and view the full content without leaving the site.</p>
+        <h2>What you'll learn</h2>
+        <ul>
+          <li>How the article list is rendered dynamically</li>
+          <li>How an article opens in the viewer area</li>
+          <li>How to return back to the article list</li>
+        </ul>
+        <h2>Example Content</h2>
+        <p>Homeopathy focuses on stimulating the body's own healing processes. This demo article is illustrative only and not a substitute for medical advice.</p>
+        <p><strong>Tip:</strong> Use the search box above to filter articles by title or description.</p>
+      </article>
+    `
+  },
+  {
+    id: 5,
+    title: 'Homeopathy for Kids: Gentle Care',
+    image: 'https://via.placeholder.com/800x450/ffb84d/ffffff?text=Kids+Health',
+    shortDescription: "Practical tips and remedies for common childhood complaints using gentle homeopathic approaches.",
+    fullContent: `
+      <article>
+        <h1>Homeopathy for Kids: Gentle Care</h1>
+        <p><em>By Dr. Satish Kaushik</em></p>
+        <p>Homeopathy offers gentle and individualized care for children. This article covers safe remedies, dosage guidance, and when to seek professional help.</p>
+        <h2>Common Uses</h2>
+        <ul>
+          <li>Colds and coughs</li>
+          <li>Teething discomfort</li>
+          <li>Behavioural support</li>
+        </ul>
+        <p>Always consult a qualified practitioner before giving any medicine to children.</p>
+      </article>
+    `
+  },
+  {
+    id: 6,
+    title: 'Managing Allergies Naturally',
+    image: 'https://via.placeholder.com/800x450/6fa8dc/ffffff?text=Allergies',
+    shortDescription: 'Strategies and homeopathic options to reduce allergy symptoms and build resilience.',
+    fullContent: `
+      <article>
+        <h1>Managing Allergies Naturally</h1>
+        <p><em>By Dr. Satish Kaushik</em></p>
+        <p>Allergies can be burdensome. This article explores triggers, lifestyle changes, and homeopathic remedies that patients have found helpful.</p>
+        <h2>Triggers & Prevention</h2>
+        <p>Identify and reduce exposure to common triggers such as pollen, dust mites, and certain foods.</p>
+        <h2>Supportive Remedies</h2>
+        <p>Homeopathic care aims to reduce sensitivity and improve overall immunity.</p>
+      </article>
+    `
+  },
+  {
+    id: 7,
+    title: 'Understanding Constitutional Types',
+    image: 'https://via.placeholder.com/800x450/93c47d/ffffff?text=Constitution',
+    shortDescription: 'An introduction to constitutional prescribing and why it matters in homeopathy.',
+    fullContent: `
+      <article>
+        <h1>Understanding Constitutional Types</h1>
+        <p><em>By Dr. Satish Kaushik</em></p>
+        <p>Constitutional prescribing looks at the whole person. This piece describes common constitutional types and how remedies are selected to match the individual.</p>
+        <h2>Key Concepts</h2>
+        <ol>
+          <li>Physical traits and temperament</li>
+          <li>Emotional patterns</li>
+          <li>Long-term susceptibility</li>
+        </ol>
+      </article>
+    `
+  }
+];
+
+// Render Books
+function renderBooks(booksToRender = books) {
+  const bookGrid = document.getElementById('bookGrid');
+  if (bookGrid) {
+    bookGrid.innerHTML = '';
+    booksToRender.forEach(book => {
+      const bookCard = `
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <img src="${book.cover}" class="card-img-top" alt="${book.title}">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">${book.title}</h5>
+              <p class="card-text">${book.description}</p>
+              <!-- If a PDF is available, open it in a new tab. Otherwise, open internal viewer. -->
+              <button class="btn btn-primary mt-auto" onclick="viewBookPdf(${book.id})">Read Book</button>
+            </div>
+          </div>
+        </div>
+      `;
+      bookGrid.innerHTML += bookCard;
+    });
+  }
+}
+
+// Render Articles
+function renderArticles(articlesToRender = articles) {
+  const articleGrid = document.getElementById('articleGrid');
+  if (articleGrid) {
+    articleGrid.innerHTML = '';
+    articlesToRender.forEach(article => {
+      const articleCard = `
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 article-card">
+            <img src="${article.image}" class="card-img-top" alt="${article.title}">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">${article.title}</h5>
+              <p class="card-text">${article.shortDescription}</p>
+              <button class="btn btn-primary mt-auto" onclick="viewArticle(${article.id})">Read More</button>
+            </div>
+          </div>
+        </div>
+      `;
+      articleGrid.innerHTML += articleCard;
+    });
+  }
+}
+
+// View Book
+function viewBook(bookId) {
+  const book = books.find(b => b.id === bookId);
+  if (book) {
+    localStorage.setItem('lastReadBook', JSON.stringify(book));
+    window.location.href = `book-viewer.html?id=${bookId}`;
+  }
+}
+
+// View Article
+function viewArticle(articleId) {
+  const article = articles.find(a => a.id === articleId);
+  if (article) {
+    localStorage.setItem('currentArticle', JSON.stringify(article));
+    window.location.href = `articles.html?id=${articleId}`;
+  }
+}
+
+function viewBookPdf(bookId) {
+    const book = books.find(b => b.id === bookId);
+    if (!book) return;
+    if (book.pdf) {
+      // Encode URL to handle spaces and special characters
+      const url = encodeURI(book.pdf);
+      window.open(url, '_blank');
+    } else {
+      // Fallback to the internal viewer if no PDF available
+      viewBook(bookId);
+    }
+}
+
+
+// Load Book Viewer
+function loadBookViewer() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const bookId = parseInt(urlParams.get('id'));
+  const book = books.find(b => b.id === bookId);
+
+  if (book) {
+    document.title = book.title;
+    document.getElementById('bookTitle').textContent = book.title;
+
+    if (book.pdf) {
+      document.getElementById('bookContent').style.display = 'none';
+      document.getElementById('pdfViewer').style.display = 'block';
+      loadPDF(book.pdf);
+    } else {
+      document.getElementById('bookContent').innerHTML = book.content;
+    }
+  }
+}
+
+// PDF.js initialization
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+// Function to load PDF
+function loadPDF(url) {
+  pdfjsLib.getDocument(url).promise.then(function(pdf) {
+    const canvas = document.getElementById('pdfCanvas');
+    const context = canvas.getContext('2d');
+    let pageNumber = 1;
+    let pdfDoc = pdf;
+
+    function renderPage(num) {
+      pdfDoc.getPage(num).then(function(page) {
+        const scale = 1.5;
+        const viewport = page.getViewport({ scale: scale });
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        const renderContext = {
+          canvasContext: context,
+          viewport: viewport
+        };
+        page.render(renderContext);
+
+        document.getElementById('pageInfo').textContent = `Page ${num} of ${pdfDoc.numPages}`;
+      });
+    }
+
+    renderPage(pageNumber);
+
+    document.getElementById('prevPage').addEventListener('click', function() {
+      if (pageNumber <= 1) return;
+      pageNumber--;
+      renderPage(pageNumber);
+    });
+
+    document.getElementById('nextPage').addEventListener('click', function() {
+      if (pageNumber >= pdfDoc.numPages) return;
+      pageNumber++;
+      renderPage(pageNumber);
+    });
+  });
+}
+
+// Load Article Viewer
+function loadArticleViewer() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const articleId = parseInt(urlParams.get('id'));
+  const article = articles.find(a => a.id === articleId);
+  const articleGrid = document.getElementById('articleGrid');
+  const articleContentWrapper = document.getElementById('articleContent');
+  const articleTitleEl = document.getElementById('articleTitle');
+  const fullArticleContent = document.getElementById('fullArticleContent');
+
+  if (article) {
+    // Hide grid and show viewer
+    if (articleGrid) articleGrid.style.display = 'none';
+    if (articleContentWrapper) articleContentWrapper.style.display = 'block';
+    if (articleTitleEl) articleTitleEl.textContent = article.title;
+    if (fullArticleContent) fullArticleContent.innerHTML = article.fullContent;
+    document.title = article.title;
+  } else {
+    // Show all articles if no specific article selected
+    if (articleGrid) articleGrid.style.display = 'flex';
+    if (articleContentWrapper) articleContentWrapper.style.display = 'none';
+    renderArticles();
+  }
+}
+
+// Search and Filter Books
+function searchBooks() {
+  const searchTerm = document.getElementById('bookSearch').value.toLowerCase();
+  const filteredBooks = books.filter(book =>
+    book.title.toLowerCase().includes(searchTerm) ||
+    book.description.toLowerCase().includes(searchTerm)
+  );
+  renderBooks(filteredBooks);
+}
+
+// Search and Filter Articles
+function searchArticles() {
+  const searchTerm = document.getElementById('articleSearch').value.toLowerCase();
+  const filteredArticles = articles.filter(article =>
+    article.title.toLowerCase().includes(searchTerm) ||
+    article.shortDescription.toLowerCase().includes(searchTerm)
+  );
+  renderArticles(filteredArticles);
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize tooltips and popovers if needed
+  const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+  });
+
+  // Load specific content based on page
+  if (document.getElementById('bookGrid')) {
+    renderBooks();
+  }
+  if (document.getElementById('articleGrid')) {
+    renderArticles();
+  }
+  if (document.getElementById('bookContent')) {
+    loadBookViewer();
+  }
+  if (document.getElementById('articleContent')) {
+    loadArticleViewer();
+  }
+
+  // Add search event listeners
+  const bookSearch = document.getElementById('bookSearch');
+  if (bookSearch) {
+    bookSearch.addEventListener('input', searchBooks);
+  }
+  const articleSearch = document.getElementById('articleSearch');
+  if (articleSearch) {
+    articleSearch.addEventListener('input', searchArticles);
+  }
+});
+  </script>
+</body>
+</html>
