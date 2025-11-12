@@ -103,6 +103,32 @@
     </div>
   </section>
 
+  <!-- PDF Viewer Modal -->
+  <div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="pdfModalLabel">Reading PDF</h5>
+          <div class="ms-auto d-flex gap-2">
+            <input type="text" id="pdf-search-box" class="form-control form-control-sm" placeholder="Search in PDF..." style="width: 200px;">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+        </div>
+        <div class="modal-body" style="height: calc(100vh - 140px); overflow-y: auto; display: flex; justify-content: center; align-items: flex-start; background-color: #f0f0f0; padding: 20px;">
+          <div id="pdf-viewer" style="width: 100%; max-width: 900px; display: flex; flex-direction: column; justify-content: center;">
+            <canvas id="pdf-canvas" style="width: 100%; max-width: 100%; border: 1px solid #ddd; background: white;"></canvas>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-sm btn-secondary" onclick="previousPage()">← Previous Page</button>
+          <span id="page-info" style="margin: 0 15px; min-width: 150px; text-align: center;">Page 1</span>
+          <button class="btn btn-sm btn-secondary" onclick="nextPage()">Next Page →</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer>
     <div class="container">
@@ -112,6 +138,8 @@
 
   <!-- Bootstrap 5 JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- PDF.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <!-- Custom JS (inlined) -->
   <script>
 // JavaScript for Dr. Satish Kaushik Website
@@ -447,18 +475,141 @@ function viewArticle(articleId) {
   }
 }
 
+// PDF Viewer Variables
+let currentPdfDoc = null;
+let currentPageNum = 1;
+let currentTotalPages = 0;
+
+// Initialize PDF.js worker
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+// View Book PDF in Modal
 function viewBookPdf(bookId) {
     const book = books.find(b => b.id === bookId);
     if (!book) return;
+    
     if (book.pdf) {
-      // Encode URL to handle spaces and special characters
-      const url = encodeURI(book.pdf);
-      window.open(url, '_blank');
+      // Load PDF using PDF.js
+      pdfjsLib.getDocument(book.pdf).promise.then(function(pdf) {
+        currentPdfDoc = pdf;
+        currentPageNum = 1;
+        currentTotalPages = pdf.numPages;
+        
+        // Show modal
+        const pdfModal = new bootstrap.Modal(document.getElementById('pdfModal'));
+        document.getElementById('pdfModalLabel').textContent = book.title;
+        pdfModal.show();
+        
+        // Render first page
+        renderPdfPage(1);
+      }).catch(function(error) {
+        alert('Error loading PDF: ' + error.message);
+        console.error('PDF Error:', error);
+      });
     } else {
       // Fallback to the internal viewer if no PDF available
       viewBook(bookId);
     }
 }
+
+// Render PDF Page
+function renderPdfPage(pageNum) {
+  if (!currentPdfDoc || pageNum < 1 || pageNum > currentTotalPages) return;
+  
+  currentPageNum = pageNum;
+  
+  currentPdfDoc.getPage(pageNum).then(function(page) {
+    const canvas = document.getElementById('pdf-canvas');
+    const context = canvas.getContext('2d');
+    
+    // Responsive scaling - fit to screen width
+    const maxWidth = window.innerWidth - 100; // Leave margin for borders
+    const viewport = page.getViewport({ scale: 2 });
+    const scale = Math.min(maxWidth / viewport.width, 3); // Max scale of 3
+    const scaledViewport = page.getViewport({ scale: scale });
+    
+    canvas.width = scaledViewport.width;
+    canvas.height = scaledViewport.height;
+    
+    const renderContext = {
+      canvasContext: context,
+      viewport: scaledViewport
+    };
+    
+    page.render(renderContext).promise.then(function() {
+      document.getElementById('page-info').textContent = `Page ${pageNum} of ${currentTotalPages}`;
+    });
+  });
+}
+
+// Navigate to previous page
+function previousPage() {
+  if (currentPageNum > 1) {
+    renderPdfPage(currentPageNum - 1);
+  }
+}
+
+// Navigate to next page
+function nextPage() {
+  if (currentPageNum < currentTotalPages) {
+    renderPdfPage(currentPageNum + 1);
+  }
+}
+
+// Search in PDF
+function searchPdf() {
+  const searchBox = document.getElementById('pdf-search-box');
+  if (!searchBox) return;
+  
+  searchBox.addEventListener('keyup', function(e) {
+    if (e.key === 'Enter') {
+      const searchTerm = this.value.trim();
+      if (!searchTerm || !currentPdfDoc) return;
+      
+      searchInPages(searchTerm);
+    }
+  });
+}
+
+// Search across all pages
+function searchInPages(searchTerm) {
+  if (!currentPdfDoc) return;
+  
+  let currentPageIndex = currentPageNum - 1;
+  let found = false;
+  
+  function searchPage(pageNum) {
+    if (pageNum >= currentTotalPages) {
+      if (!found) {
+        alert(`"${searchTerm}" not found in the PDF`);
+      }
+      return;
+    }
+    
+    currentPdfDoc.getPage(pageNum + 1).then(function(page) {
+      page.getTextContent().then(function(textContent) {
+        const text = textContent.items.map(item => item.str).join(' ');
+        
+        if (text.toLowerCase().includes(searchTerm.toLowerCase())) {
+          renderPdfPage(pageNum + 1);
+          found = true;
+          alert(`Found "${searchTerm}" on page ${pageNum + 1}`);
+        } else {
+          searchPage(pageNum + 1);
+        }
+      });
+    });
+  }
+  
+  searchPage(currentPageIndex);
+}
+
+// Initialize search when modal is shown
+document.addEventListener('shown.bs.modal', function(e) {
+  if (e.target && e.target.id === 'pdfModal') {
+    searchPdf();
+  }
+});
 
 
 // Load Book Viewer
@@ -481,10 +632,7 @@ function loadBookViewer() {
   }
 }
 
-// PDF.js initialization
-pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-
-// Function to load PDF
+// Function to load PDF (for book-viewer.html page)
 function loadPDF(url) {
   pdfjsLib.getDocument(url).promise.then(function(pdf) {
     const canvas = document.getElementById('pdfCanvas');
